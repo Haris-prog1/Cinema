@@ -25,7 +25,13 @@ class CinemaController{
         require "view/listFilms.php";
     }
     public function casting(){
-        
+        $pdo = Connect::seConnecter();
+
+        $requete = $pdo->prepare("SELECT acteur_id, film_id, role_id FROM casting ")
+
+        $requete->execute([]);
+
+        require "view/detailActeur.php";
     }
     
     public function detActeur($id) {
