@@ -1,0 +1,354 @@
+
+
+/* Import d'une font de google "Poppins" */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* Paramètres globaux */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+
+ font-weight: bolder;
+}
+/* Section Body */
+body {
+  background-color: black;
+}
+/* Section wrapper, celui-ci en référence à la page d'accueil du home */
+.wrapper2{
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.content {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.content {
+  overflow-x: hidden;
+}
+
+.content .section {
+  width: 100%;
+  height: 100vh;
+}
+
+.content .section.hero {
+  background-image: url("https://freedesignfile.com/upload/2016/09/Cinema-background-with-red-curtain-and-hand-vector.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.image-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  perspective: 500px;
+  overflow: hidden;
+}
+
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+/* Wrapper désignant le caroussel en bas de la page home */
+
+.wrapper {
+  margin: 100px auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateZ(-288px);
+  transform-style: preserve-3d;
+  animation: spin 16s linear infinite;
+  border: blue solid 2p
+}
+
+.carousel__cell {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  left: 10px;
+  top: 10px;
+  border-radius: 8px;
+  text-align: center;
+  opacity: 0.9;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.2s, background-size 0.2s;
+  
+  &:hover{
+    background-size: 100%;
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+.carousel__cell:nth-child(1) {
+  transform: rotateY(0deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(2) {
+  transform: rotateY(40deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(3) {
+  transform: rotateY(80deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(4) {
+  transform: rotateY(120deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(5) {
+  transform: rotateY(160deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(6) {
+  transform: rotateY(200deg) translateZ(288px);
+  height: 30%;}
+.carousel__cell:nth-child(7) {
+  transform: rotateY(240deg) translateZ(288px);
+ height: 30%;
+}
+.carousel__cell:nth-child(8) {
+  transform: rotateY(280deg) translateZ(288px);
+  height: 30%;
+}
+.carousel__cell:nth-child(9) {
+  transform: rotateY(320deg) translateZ(288px);
+  height: 30%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --index: calc(1vw + 1vh);
+  --transition: cubic-bezier(.1, .7, 0, 1);
+}
+
+body{
+  background-color: #141414;
+}
+
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.items{
+  display: flex;
+  gap: 0.4rem;
+  perspective: calc(var(--index) * 35);
+}
+
+.item{
+  width: calc(var(--index) * 3);
+  height: calc(var(--index) * 12);
+  background-color: #222;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  filter: grayscale(1) brightness(.5);
+  transition: transform 1.25s var(--transition), filter 3s var(--transition), width 1.25s var(--transition);
+  will-change: transform, filter, rotateY, width;
+}
+
+.item::before, .item::after{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 20px;
+  right: calc(var(--index) * -1);
+}
+
+.item::after{
+  left: calc(var(--index) * -1);
+}
+
+.items .item:hover{
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 10));
+}
+
+/*Right*/
+
+.items .item:hover + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
+  z-index: -1;
+}
+
+.items .item:hover + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
+  z-index: -2;
+}
+
+.items .item:hover + * + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
+  z-index: -3;
+}
+
+.items .item:hover + * + * + * + *{
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * .6)) rotateY(15deg);
+  z-index: -4;
+}
+
+
+/*Left*/
+
+.items .item:has( + :hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
+}
+
+.items .item:has( + * + :hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
+}
+
+.items .item:has( + * + * + :hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
+}
+
+.items .item:has( + * + * + * + :hover){
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * .6)) rotateY(-15deg);
+}
+
+.items .item:active, .items .item:focus {
+width: 28vw;
+filter: inherit;
+z-index: 100;
+transform: translateZ(calc(var(--index) * 10));
+  margin: 0 .45vw;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+/* style du main */
+.main {
+  flex: 1;
+  padding-bottom: 50px;
+}
+/* Section background avec les titres en en tête jusqu'au body */
+.background { /*Background, avec la propriété gradiant*/
+  background: linear-gradient(to bottom, #000033, #000000);
+}
+
+.banner {
+  text-align: center;
+  padding: 10px 10px;
+  color: #ada6a6;
+}
+.titreBienvenue {
+    text-decoration: none; /* Supprime le soulignement du lien */
+    color: #ada6a6; /* Définit la couleur du texte à noir */
+}
+.banner h1 {
+  font-size: 4em;
+  margin-bottom: 10px;
+  color: #ada6a6;
+}
+
+.banner p {
+  font-size: 1.5em;
+  color: #ada6a6;
+}
+/* Style pour le titre principal */
+.titrePrincip1 {
+  color: #ada6a6; /* Couleur du texte */
+}
+/* Style pour le lien à l'intérieur de .titrePrincip1 */
+.titrePrincip1 > a {
+  color: #ada6a6; /* Couleur par défaut du lien */
+  text-decoration: none; /* Supprime le soulignement par défaut du lien */
+  transition: color 0.3s ease; /* Ajoute une transition douce pour le changement de couleur */
+}
+
+/* Style pour le lien au survol */
+.titrePrincip1 > a:hover {
+  color:#e96868; /* Change la couleur du lien au survol */
+}
+.section {
+  padding: 60px 20px;
+}
+
+.section h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+/* Section navbar */
+.navbar {
+  font-size: 2em;
+}
+
+.nav-link {
+  color: #ada6a6;
+}
+
+.nav-item-border {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.navbar-nav .nav-link {
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  background-color: transparent;
+  color: #e96868;
+  text-decoration: none;
+}
+/* Footer du bas de page */
+.footer {
+  justify-content: center;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, #000033, #000000);
+  color: #fff;
+  text-align: center;
+  padding: 1px;
+  z-index: 100;
+}
+

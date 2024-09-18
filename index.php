@@ -1,26 +1,67 @@
-<?php
+<!DOCTYPE html>
+<html lang="fr">
 
-session_start();
-use Controller\CinemaController;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+        integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./public/css/style.css">
+    
+</head>
 
-spl_autoload_register(function ($class_name) {
-    include str_replace("\\", DIRECTORY_SEPARATOR, $class_name) . '.php';
-});
-$ctrlCinema = new CinemaController();
+<body>
+    <?php
+    session_start();
+    use Controller\CinemaController;
 
+    spl_autoload_register(function ($class_name) {
+        include str_replace("\\", DIRECTORY_SEPARATOR, $class_name) . '.php';
+    });
 
-$id = (isset($_GET['id'])) ? $_GET['id'] : null;
-$idMovie = (isset($_GET['idMovie'])) ? $_GET["idMovie"] : null;
-// $type = (isset($_get["type"])) ? $_GET["type"] : null;
+    $ctrlCinema = new CinemaController();
 
-    if(isset($_GET["action"])){
-    switch ($_GET["action"]){
-        //Films
-        case "listFilms": $ctrlCinema->listFilms($film); break;
-        case "detailFilm": $ctrlCinema->detActeur($id); break;
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $idMovie = isset($_GET['idMovie']) ? $_GET["idMovie"] : null;
+
+    if (isset($_GET["action"])) {
+        switch ($_GET["action"]) {
+            case "listFilms":
+                $ctrlCinema->listFilms();
+                break;
+            case "listRealisateurs":
+                $ctrlCinema->listRealisateurs();
+                break;
+            case "listActeurs":
+                $ctrlCinema->listActeurs();
+                break;
+            case "listRoles":
+                $ctrlCinema->listRoles();
+                break;
+            case "listCinema":
+                $ctrlCinema->listCinema();
+                break;
+            case "detailFilm":
+                $ctrlCinema->detailFilm($id);
+                break;
+            case "detailActeur":
+                $ctrlCinema->detailActeur($id);
+                break;
+            case "detailRealisateur":
+                $ctrlCinema->detailRealisateur($id);
+                break;
+            case "detailRole":
+                $ctrlCinema->detailRole($id);
+                break;
+            case "detailCinema":
+                $ctrlCinema->detailCinema($id);
+                break;
+        }
+    } else {
+        $ctrlCinema->main(); // Action par défaut si aucune action spécifiée
     }
-} else {
-    $ctrlCinema->main(); // Action par défaut si aucune action spécifiée
-}
+    ?>
 
-
+<script src="public/js/main.js"></script>
+</body>
+</html>

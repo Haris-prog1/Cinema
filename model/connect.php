@@ -8,6 +8,7 @@ abstract class Connect {
     const USER = "root";
     const PASS = "";
 
+    // Fonction permettant de se connecter, et renvoie d'un message d'erreur si erreur
     public static function seConnecter(){
         try {
             return new \PDO(
